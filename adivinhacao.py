@@ -32,6 +32,7 @@ secret_number = random.randrange(1, 101)
 ##print(secret_number)
 total_attempts = 0
 round_attempt = 1
+score = 1000
 
 print("Qual o nivel de dificuldade?")
 print("1 - Fácil\n2 - Médio\n3 - Difícil")
@@ -58,14 +59,16 @@ for round_attempt in range(1, total_attempts + 1):
     more = attempt > secret_number
     less = attempt < secret_number
     if round_attempt == total_attempts:
-        print("Você perdeu! O número secreto era {}".format(secret_number))
+        print("Você perdeu! O número secreto era {} e sua pontuação foi {}".format(secret_number, score))
         break
     elif more:
         print("Você errou! O número digitado é maior que o secreto")
     elif less:
         print("Você errou! O número digitado é menor que o secreto")
     elif attempt == secret_number:
-        print("Você acertou")
+        print(f"Você acertou e sua pontuação foi {score}")
         break
+    lost_points = abs(attempt - secret_number)
+    score = score - lost_points
 
 print("Fim de jogo")
