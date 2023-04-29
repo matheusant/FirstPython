@@ -29,9 +29,21 @@ print("*******************")
 ##### Digitando números até o total de tentivas acabar ######
 
 secret_number = random.randrange(1, 101)
-print(secret_number)
-total_attempts = 5
+##print(secret_number)
+total_attempts = 0
 round_attempt = 1
+
+print("Qual o nivel de dificuldade?")
+print("1 - Fácil\n2 - Médio\n3 - Difícil")
+
+level = int(input("Defina o nível da dificuldade: "))
+
+if level == 1:
+    total_attempts = 100
+elif level == 2:
+    total_attempts = 20
+elif level == 3:
+    total_attempts = 5
 
 for round_attempt in range(1, total_attempts + 1):
     print("Tentativa {} de {}".format(round_attempt, total_attempts))
@@ -45,7 +57,10 @@ for round_attempt in range(1, total_attempts + 1):
         continue
     more = attempt > secret_number
     less = attempt < secret_number
-    if more:
+    if round_attempt == total_attempts:
+        print("Você perdeu! O número secreto era {}".format(secret_number))
+        break
+    elif more:
         print("Você errou! O número digitado é maior que o secreto")
     elif less:
         print("Você errou! O número digitado é menor que o secreto")
