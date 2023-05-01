@@ -1,3 +1,6 @@
+import os
+
+
 def play():
     print("*******************")
     print("Jogo de Forca")
@@ -6,6 +9,7 @@ def play():
     secret_word = "banana"
     hit = False
     hanged = False
+    total_attempts = 5
 
     print(f"A palavra tem {len(secret_word)} letras\n")
     hint = ""
@@ -13,16 +17,32 @@ def play():
     for i in range(len(secret_word)):
         hint += "_"
 
-    print(hint)
     while not hit and not hanged:
+        print("total de tentativas", total_attempts)
+        print(hint)
         attempt = input("Digite uma letra ")
         attempt = attempt.strip()
 
-        index = 1
+        index = 0
+
         for letter in secret_word:
             if attempt.lower() == letter.lower():
-                print(f'A letra chutada foi {attempt.upper()} e ela está na posição {index}')
+                x = list(hint)
+                x[index] = letter.upper()
+                hint = "".join(x)
+                # print(f'A letra chutada foi {attempt.upper()} e ela está na posição {index}')
+
             index += 1
+
+        if attempt not in secret_word:
+            total_attempts -= 1
+        if hint.lower() == secret_word.lower():
+            print(f"Você acertou a palavra {secret_word.upper()}!")
+            hit = True
+        if total_attempts == 0:
+            print(f"Você perdeu!!! A palavra era {secret_word.upper()}")
+            hanged = True
+
     print("Fim de jogo")
 
 
