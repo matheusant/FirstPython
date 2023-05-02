@@ -1,6 +1,3 @@
-import os
-
-
 def play():
     print("*******************")
     print("Jogo de Forca")
@@ -18,7 +15,7 @@ def play():
         hint += "_"
 
     while not hit and not hanged:
-        print("total de tentativas", total_attempts)
+        print(f"\ntotal de tentativas {total_attempts}\n")
         print(hint)
         attempt = input("Digite uma letra ")
         attempt = attempt.strip()
@@ -30,7 +27,6 @@ def play():
                 x = list(hint)
                 x[index] = letter.upper()
                 hint = "".join(x)
-                # print(f'A letra chutada foi {attempt.upper()} e ela está na posição {index}')
 
             index += 1
 
