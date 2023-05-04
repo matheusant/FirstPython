@@ -1,9 +1,23 @@
+import random
+
+
 def play():
     print("*******************")
     print("Jogo de Forca")
     print("*******************")
 
-    secret_word = "banana".upper()
+    file = open("palavras.txt", "r")
+
+    words = list()
+    for word in file:
+        word = word.strip()
+        words.append(word)
+
+    file.close()
+
+    rand_index = random.randrange(0, len(words))
+
+    secret_word = words[rand_index].upper()
     errors = 0
     hit = False
     hanged = False
