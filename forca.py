@@ -3,8 +3,8 @@ import random
 
 def play():
     presentation()
-
     secret_word = get_secret_word()
+
     errors = 0
     hit = False
     hanged = False
@@ -18,11 +18,7 @@ def play():
         attempt = attempt.strip().upper()
 
         if attempt in secret_word:
-            index = 0
-            for letter in secret_word:
-                if attempt == letter:
-                    hint[index] = letter
-                index += 1
+            right_attempt(attempt, hint, secret_word)
         else:
             errors += 1
 
@@ -33,7 +29,14 @@ def play():
         print("Você acertou a palavra {}".format(secret_word))
     else:
         print("Você perdeu a palavra era {}".format(secret_word))
-    print("Fim de jogo")
+
+
+def right_attempt(attempt, hint, secret_word):
+    index = 0
+    for letter in secret_word:
+        if attempt == letter:
+            hint[index] = letter
+        index += 1
 
 
 def get_secret_word():
