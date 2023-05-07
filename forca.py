@@ -21,9 +21,10 @@ def play():
             right_attempt(attempt, hint, secret_word)
         else:
             errors += 1
+            draw_hang(errors)
 
         hit = "_" not in hint
-        hanged = errors == 6
+        hanged = errors == 7
 
     if hit:
         print("Você acertou a palavra {}".format(secret_word))
@@ -54,6 +55,57 @@ def presentation():
     print("*******************")
     print("Jogo de Forca")
     print("*******************")
+
+
+def draw_hang(errors):
+    print("  _______     ")
+    print(" |/      |    ")
+
+    if errors == 1:
+        print(" |      (_)   ")
+        print(" |            ")
+        print(" |            ")
+        print(" |            ")
+
+    if errors == 2:
+        print(" |      (_)   ")
+        print(" |      \     ")
+        print(" |            ")
+        print(" |            ")
+
+    if errors == 3:
+        print(" |      (_)   ")
+        print(" |      \|    ")
+        print(" |            ")
+        print(" |            ")
+
+    if errors == 4:
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |            ")
+        print(" |            ")
+
+    if errors == 5:
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |            ")
+
+    if errors == 6:
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |      /     ")
+
+    if errors == 7:
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |      / \   ")
+
+    print(" |            ")
+    print("_|___         ")
+    print()
 
 
 if __name__ == "__main__":
