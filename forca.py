@@ -2,19 +2,9 @@ import random
 
 
 def play():
-    print("*******************")
-    print("Jogo de Forca")
-    print("*******************")
+    presentation()
 
-    words = list()
-    with open("palavras.txt", "r") as file:
-        for word in file:
-            word = word.strip()
-            words.append(word)
-
-    rand_index = random.randrange(0, len(words))
-
-    secret_word = words[rand_index].upper()
+    secret_word = get_secret_word()
     errors = 0
     hit = False
     hanged = False
@@ -44,6 +34,23 @@ def play():
     else:
         print("Você perdeu a palavra era {}".format(secret_word))
     print("Fim de jogo")
+
+
+def get_secret_word():
+    words = list()
+    with open("palavras.txt", "r") as file:
+        for word in file:
+            word = word.strip()
+            words.append(word)
+    rand_index = random.randrange(0, len(words))
+    secret_word = words[rand_index].upper()
+    return secret_word
+
+
+def presentation():
+    print("*******************")
+    print("Jogo de Forca")
+    print("*******************")
 
 
 if __name__ == "__main__":
